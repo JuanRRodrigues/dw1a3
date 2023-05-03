@@ -1,7 +1,10 @@
-/* Global ==================================*/
-
+/* Global ===================== */
 :root {
     --dark-blue: #363f5f;
+    --green: #49AA26;
+    --light-green: #3dd705;
+    --red: #e92929;
+
 }
 
 * {
@@ -11,14 +14,16 @@
 }
 
 html {
-    font-size: 93.75%;
+    font-size: 93.75%; /* 15px */
 }
-
 
 body {
-    background: #e4e4e4;
-    font-family: 'poppins', sans-serif
+    background: #f1dcdb;
+    font-family:'Poppins', sans-serif
 }
+
+
+
 
 .sr-only {
     position: absolute;
@@ -33,12 +38,11 @@ body {
 }
 
 .container {
-    width: min(90vw, 500px);
-
+    width: min(90vw, 800px);
     margin: auto;
 }
 
-/* Title ==================================*/
+/* Titles ===================== */
 h2 {
     margin-top: 3.2rem;
     margin-bottom: 0.8rem;
@@ -47,16 +51,34 @@ h2 {
     font-weight: normal;
 }
 
-
-
-/* Link & Buttons ==================================*/
+/* Links & Buttons ===================== */
 a {
-    color: #49aa26;
+    color: var(--green);
     text-decoration: none;
 }
 
 a:hover {
-    color: #3dd705;
+    color: red;
+}
+
+button {
+    width: 100%;
+    height: 50px;
+
+    border: none;
+
+    color: white;
+    background: var(--green);
+
+    padding: 0;
+
+    border-radius: 0.25rem;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--light-green);
 }
 
 .button.new {
@@ -64,9 +86,106 @@ a:hover {
     margin-bottom: .8rem;
 }
 
+.button.cancel {
+    color: var(--red);
+    border: 2px var(--red) solid;
+    border-radius: 0.25rem;
 
-/* Cards ==================================*/
+    height: 50px;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0.6;
+}
+
+.button.cancel:hover {
+    opacity: 1;
+}
+
+/* Header ===================== */
+header {
+    background: #ca0000;
+    padding: 2rem 0 10rem;
+    text-align: center;
+}
+nav {
+    background-color: #f5f5f5;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+  }
+
+  nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  nav li {
+    margin: 0 10px;
+  }
+
+  nav li a {
+    display: block;
+    color: rgb(2, 2, 2);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  nav form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    margin: 0 10px;
+  }
+
+  nav input[type="text"] {
+    border-radius: 4px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    max-width: 500px;
+    flex-grow: 1;
+  }
+
+  nav button[type="submit"] {
+    border: none;
+    border-radius: 10px;
+    padding: 0.2rem 0.4rem;
+    background-color: #db0404;
+    color: #000000;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  nav button[type="submit"]:hover {
+    background-color: #e22626;
+  }
+
+  .logo {
+    font-size: 1.0rem;
+    color: rgb(214, 0, 0);
+    font-weight: 600;
+  }
+
+/* Balance ===================== */
+#balance {
+    margin-top: -8rem;
+}
+
+#balance h2 {
+    color:white;
+    margin-top:0;
+}
+
+/* Cards ===================== */
 .card {
     background: white;
     padding: 1.5rem 2rem;
@@ -89,66 +208,45 @@ a:hover {
 .card p {
     font-size: 2rem;
     line-height: 3rem;
-
+    white-space:nowrap;
     margin-top: 1rem;
-
 }
 
 .card.total {
-    background-color: #49AA26;
+    background: var(--green);
     color: white;
 }
 
-/* Header ==================================*/
-
-header {
-    background: #00460c;
-    padding: 2rem 0 10rem;
-    text-align: center;
-
+/* Table ===================== */
+#transaction {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
 }
-
-#logo {
-    color: #fff;
-    font-weight: 100;
-
-
-}
-
-
-/* Balance ==================================*/
-#balance {
-    margin-top: -8rem;
-}
-
-#balance h2 {
-    color: white;
-    margin-top: 0;
-}
-
-/* Table ==================================*/
 #data-table {
     width: 100%;
-    border-spacing: 0 0.5.rem;
+    border-spacing: 0 0.5rem;
     color: #969cb3;
-
-    overflow: auto;
 }
 
+table thead tr th:first-child,
+table tbody tr td:first-child
+{
+    border-radius: 0.25rem 0 0 0.25rem;
+}
 
-table th {
+table thead tr th:last-child,
+table tbody tr td:last-child{
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+
+table thead th {
     background: white;
+
     font-weight: normal;
     padding: 1rem 2rem;
 
     text-align: left;
-    color: #969cb3;
-}
-
-table td {
-    background: white;
-
-    padding: 1rem 2rem;
 }
 
 table tbody tr {
@@ -156,21 +254,12 @@ table tbody tr {
 }
 
 table tbody tr:hover {
-    opacity: 1;
+    opacity: 1
 }
 
-table thead tr:first-child,
-table tbody tr td:first-child {
-    border-radius: 0.25rem 0 0 0.25.rem;
-}
-
-table thead tr:last-child,
-table tbody tr td:last-child {
-    border-radius: 0.25rem 0 0 0.25.rem;
-}
-
-table thead th {
-    background-color: white;
+table tbody td {
+    background:white;
+    padding: 1rem 2rem;
 }
 
 td.description {
@@ -185,7 +274,79 @@ td.expense {
     color: #e92929;
 }
 
-/* Footer ==================================*/
+/* Modal ===================== */
+.modal-overlay {
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0,0,0,0.7);
+
+    position: fixed;
+    top: 0;
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    z-index: 999;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: #F0F2f5;
+    padding: 2.4rem;
+
+    position: relative;
+    z-index: 1;
+}
+
+
+/* Form ===================== */
+#form {
+    max-width: 500px;
+}
+
+#form h2 {
+    margin-top: 0;
+}
+
+input {
+    border: none;
+    border-radius: 0.2rem;
+
+    padding: 0.8rem;
+
+    width: 100%;
+}
+
+.input-group {
+    margin-top: 0.8rem;
+}
+
+.input-group .help{
+    opacity: 0.4;
+}
+
+.input-group.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group.actions .button,
+.input-group.actions button {
+    width: 48%;
+}
+
+
+/* Footer ===================== */
 footer {
     text-align: center;
     padding: 4rem 0 2rem;
@@ -194,16 +355,16 @@ footer {
     opacity: 0.6;
 }
 
-/* Responsive ==================================*/
-@media(min-width: 800px) {
+
+/* Responsive ===================== */
+@media (min-width: 800px) {
     html {
         font-size: 87.5%;
     }
-}
 
-#balance{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 2rem;
-
+    #balance {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
 }
