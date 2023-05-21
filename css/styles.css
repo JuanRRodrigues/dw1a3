@@ -1,5 +1,5 @@
 body {
-background-color: black;
+background-color: rgb(8, 1, 36);
 color: white;
 font-family: poppisnsregular;
 max-width: 1200px;
@@ -7,14 +7,19 @@ margin: 0;
 padding: 15px;
 
  }
- header{
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-   align-items: center;
+ .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 9%;
+  background: var(--bg--color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
 
- }
- 
  #title{
 flex-direction: colunm;
 line-height: 10px;
@@ -27,11 +32,11 @@ line-height: 10px;
 
  a{
    color: white;
-   
+
  }
 
  a:hover{
-color: rgba(14, 179, 201);
+color: rgb(150, 6, 6);
 transition: 0.3s all;
  }
 
@@ -45,13 +50,13 @@ transition: 0.3s all;
    margin-top: 50px;
  }
      #Atividades-btn{
-      border: 2px solid rgb(14, 179, 201);
+      border: 2px solid rgb(201, 14, 14);
       padding: 10px;
       border-radius: 15px;
      }
 
      #atividades-btn:hover{
-      background-color: rgb(14, 179, 201);
+      background-color: rgb(141, 0, 0);
       color: white;
      }
      input{
@@ -66,4 +71,15 @@ transition: 0.3s all;
    line-height: 20px;
    max-width: 500px;
    font-family: poppinslight;
+}
+.navbar a {
+  font-size: 1.7rem;
+  color: var(--text-color);
+  margin-left: 4rem;
+  transition: .3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  color: var(--main-color);
 }

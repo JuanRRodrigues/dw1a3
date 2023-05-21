@@ -1,0 +1,40 @@
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f1f1f1;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  #elemento {
+    width: 200px;
+    height: 200px;
+    background-color: #ccc;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-top: 10px;
+  }
+
+  input[type="range"],
+  input[type="number"],
+  input[type="color"] {
+    width: 60%;
+  }
+
+  button {
+    display: block;
+    margin-top: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    resize: none;
+  }
+
