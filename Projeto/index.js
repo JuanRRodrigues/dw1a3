@@ -22,7 +22,7 @@ const shop = new Sprite({
     y: 128
   },
   imageSrc: './img/shop.png',
-  scale: 2.75,
+  scale: 2.93,
   framesMax: 6
 })
 
@@ -39,33 +39,33 @@ const player = new Fighter({
     x: 0,
     y: 0
   },
-  imageSrc: './img/samuraiMack/Idle.png',
-  framesMax: 8,
-  scale: 2.5,
+  imageSrc: './img/samuraiMack/kyo2.png',
+  framesMax: 10,
+  scale: 1.5,
   offset: {
-    x: 215,
-    y: 157
+    x: -120,
+    y: 7
   },
   sprites: {
     idle: {
-      imageSrc: './img/samuraiMack/Idle.png',
-      framesMax: 8
+      imageSrc: './img/samuraiMack/kyo2.png',
+      framesMax: 10
     },
     run: {
-      imageSrc: './img/samuraiMack/Run.png',
-      framesMax: 8
+      imageSrc: './img/samuraiMack/KyoWalker.png',
+      framesMax: 5
     },
     jump: {
-      imageSrc: './img/samuraiMack/Jump.png',
-      framesMax: 2
+      imageSrc: './img/samuraiMack/KyoJump.png',
+      framesMax: 5
     },
     fall: {
-      imageSrc: './img/samuraiMack/Fall.png',
-      framesMax: 2
+      imageSrc: './img/samuraiMack/KyoFall.png',
+      framesMax: 4
     },
     attack1: {
-      imageSrc: './img/samuraiMack/Attack1.png',
-      framesMax: 6
+      imageSrc: './img/samuraiMack/KyoAtk1.png',
+      framesMax: 3
     },
     takeHit: {
       imageSrc: './img/samuraiMack/Take Hit - white silhouette.png',
