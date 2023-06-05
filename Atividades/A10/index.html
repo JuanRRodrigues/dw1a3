@@ -88,120 +88,111 @@ button[type="submit"] {
     <button type="submit">Enviar</button>
   </form>
 
-  <div id="success-message" class="success-message">
-    Cadastro realizado com sucesso!
-  </div>
+
   <script>
-   function validateForm(event) {
-  event.preventDefault();
+    function validateForm(event) {
+      event.preventDefault();
 
-  const nameInput = document.getElementById('name');
-  const emailInput = document.getElementById('email');
-  const cpfInput = document.getElementById('cpf');
-  const phoneInput = document.getElementById('phone');
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const cpfInput = document.getElementById('cpf');
+      const phoneInput = document.getElementById('phone');
 
-  const name = nameInput.value.trim();
-  const email = emailInput.value.trim();
-  const cpf = cpfInput.value.trim();
-  const phone = phoneInput.value.trim();
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const cpf = cpfInput.value.trim();
+      const phone = phoneInput.value.trim();
 
-  // Verifica se os campos estão vazios
-  if (name === '') {
-    showError(nameInput, 'Campo obrigatório');
-  } else {
-    removeError(nameInput);
-  }
+      // Verifica se os campos estão vazios
+      if (name === '') {
+        showError(nameInput, 'Campo obrigatório');
+      } else {
+        removeError(nameInput);
+      }
 
-  if (email === '') {
-    showError(emailInput, 'Campo obrigatório');
-  } else if (!isValidEmail(email)) {
-    showError(emailInput, 'E-mail inválido');
-  } else {
-    removeError(emailInput);
-  }
+      if (email === '') {
+        showError(emailInput, 'Campo obrigatório');
+      } else if (!isValidEmail(email)) {
+        showError(emailInput, 'E-mail inválido');
+      } else {
+        removeError(emailInput);
+      }
 
-  if (cpf === '') {
-    showError(cpfInput, 'Campo obrigatório');
-  } else if (!isValidCPF(cpf)) {
-    showError(cpfInput, 'CPF inválido');
-  } else {
-    removeError(cpfInput);
-  }
+      if (cpf === '') {
+        showError(cpfInput, 'Campo obrigatório');
+      } else if (!isValidCPF(cpf)) {
+        showError(cpfInput, 'CPF inválido');
+      } else {
+        removeError(cpfInput);
+      }
 
-  if (phone === '') {
-    showError(phoneInput, 'Campo obrigatório');
-  } else if (!isValidPhone(phone)) {
-    showError(phoneInput, 'Telefone inválido');
-  } else {
-    removeError(phoneInput);
-  }
+      if (phone === '') {
+        showError(phoneInput, 'Campo obrigatório');
+      } else if (!isValidPhone(phone)) {
+        showError(phoneInput, 'Telefone inválido');
+      } else {
+        removeError(phoneInput);
+      }
+    }
 
-  // Se todos os campos forem válidos, exibe a mensagem de sucesso
-  if (isFormValid()) {
-    showSuccessMessage();
-  }
-}
+    function showError(input, message) {
+      input.classList.add('invalid');
 
-function showError(input, message) {
-  input.classList.add('invalid');
+      const errorElement = document.createElement('p');
+      errorElement.className = 'error-message';
+      errorElement.textContent = message;
 
-  const errorElement = document.createElement('p');
-  errorElement.className = 'error-message';
-  errorElement.textContent = message;
+      const parentElement = input.parentElement;
+      parentElement.appendChild(errorElement);
+    }
 
-  const parentElement = input.parentElement;
-  parentElement.appendChild(errorElement);
-}
+    function removeError(input) {
+      input.classList.remove('invalid');
 
-function removeError(input) {
-  input.classList.remove('invalid');
+      const parentElement = input.parentElement;
+      const errorElement = parentElement.querySelector('.error-message');
+      if (errorElement) {
+        parentElement.removeChild(errorElement);
+      }
+    }
 
-  const parentElement = input.parentElement;
-  const errorElement = parentElement.querySelector('.error-message');
-  if (errorElement) {
-    parentElement.removeChild(errorElement);
-  }
-}
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
 
-function isValidEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
+    function isValidCPF(cpf) {
+      const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+      return cpfRegex.test(cpf);
+    }
 
-function isValidCPF(cpf) {
-  // Implemente aqui a lógica para validar o CPF
-  // Deixei essa parte em branco pois o cálculo do CPF requer um algoritmo específico
+    function isValidPhone(phone) {
+      const phoneRegex = /^\(\d{2}\)\s\d{4}-\d{4}$/;
+      return phoneRegex.test(phone);
+    }
 
-  // Exemplo de implementação:
-  // return isValidCPFAlgorithm(cpf);
 
-  // Para fins de demonstração, consideramos todos os CPFs válidos
-  return true;
-}
+    const cpfInput = document.getElementById('cpf');
+    VMasker(cpfInput).maskPattern('999.999.999-99');
 
-function isValidPhone(phone) {
-  const phoneRegex = /^\d+$/;
-  return phoneRegex.test(phone);
-}
+    const phoneInput = document.getElementById('phone');
+    VMasker(phoneInput).maskPattern('(99) 9999-9999');
 
-function isFormValid() {
-  const errorMessages = document.querySelectorAll('.error-message');
-  return errorMessages.length === 0;
-}
 
-function showSuccessMessage() {
-  const successMessage = document.getElementById('success-message');
-  successMessage.style.display = 'block';
-}
 
-const cpfInput = document.getElementById('cpf');
-VMasker(cpfInput).maskPattern('999.999.999-99');
+    const form = document.getElementById('form');
+    form.addEventListener('submit', validateForm);
 
-const phoneInput = document.getElementById('phone');
-VMasker(phoneInput).maskPattern('(99) 9999-9999');
+    function showSuccessMessage() {
+      const successMessage = document.getElementById('success-message');
+      successMessage.style.display = 'block';
+    }
 
-const form = document.getElementById('form');
-form.addEventListener('submit', validateForm);
+function resetForm() {
+      const form = document.getElementById('form');
+      form.reset();
+    }
+
 
   </script>
 </body>
