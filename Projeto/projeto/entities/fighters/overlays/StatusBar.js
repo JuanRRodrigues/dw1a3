@@ -104,6 +104,7 @@ HEALTH_MAX_HIT_POINTS - Math.floor(this.healthBars[1].hitPoint), 9,
 
   update(time) {
     this.updateTime(time);
+
   }
   drawTime(context) {
     const timesString = String(Math.max(this.time, 0)).padStart(2, '00');
