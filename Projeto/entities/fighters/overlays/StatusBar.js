@@ -1,22 +1,29 @@
-import { HEALTH_COLOR_DAMAGE_COLOR, HEALTH_MAX_HIT_POINTS, TIME_DELAY, TIME_FLASH_DELAY, TIME_FRAME_KEYS } from '../../../src/constants/battle.js';
+import {  HEALTH_DAMAGE_COLOR, HEALTH_MAX_HIT_POINTS, TIME_DELAY, TIME_FLASH_DELAY, TIME_FRAME_KEYS } from '../../../src/constants/battle.js';
 import { gameState } from '../../../state/gameState.js';
 import { drawFrame } from '../../utils/context.js';
+
+
+
 
 export class StatusBar {
   constructor() {
     this.image = document.querySelector('img[alt="hud1"]');
+
+
+
 
     this.time = 99;
     this.timeTimer = 0;
     this.timeFlashTimer = 0;
     this.useFlashFrames = false;
 
+
 this.healthBars = [{
   timer: 0,
-  hitPoint: 100,//HEALTH_MAX_HIT_POINTS,
+  hitPoints: HEALTH_MAX_HIT_POINTS,
 }, {
 Timer:0,
-hitPoint: 30,//HEALTH_MAX_HIT_POINTS,
+hitPoints: HEALTH_MAX_HIT_POINTS,
 }];
 
 
@@ -66,17 +73,18 @@ hitPoint: 30,//HEALTH_MAX_HIT_POINTS,
     this.drawFrame(context, 'health-bar', 383, 20, -1);
 
 
-    context.fillsStyle = HEALTH_COLOR_DAMAGE_COLOR;
+    context.fillStyle = HEALTH_DAMAGE_COLOR;
+
 
     context.beginPath();
     context.fillRect(
-      238, 21,
-      HEALTH_MAX_HIT_POINTS - Math.floor(this.healthBars[0].hitPoint), 9,
+      62, 21,
+      HEALTH_MAX_HIT_POINTS - Math.floor(this.healthBars[0].hitPoints), 9,
     );
 
     context.fillRect(
-64 + Math.floor(this.healthBars[1].hitPoint), 21,
-HEALTH_MAX_HIT_POINTS - Math.floor(this.healthBars[1].hitPoint), 9,
+238 + Math.floor(this.healthBars[1].hitPoints), 21,
+HEALTH_MAX_HIT_POINTS - Math.floor(this.healthBars[1].hitPoints), 9,
     );
   }
 
@@ -102,8 +110,16 @@ HEALTH_MAX_HIT_POINTS - Math.floor(this.healthBars[1].hitPoint), 9,
     }
   }
 
+  updateHealthBars(time) {
+  const FPS = 60;
+   for(const index in this.healthBars){
+    if(this.healthBars[index].hitPoints <= gameState.fighters[index].hitPoints) continue;
+    this.healthBars[index].hitPoints = Math.max(0, this.healthBars[index].hitPoints - (time.secondsPassed * FPS));
+   }
+  }
   update(time) {
     this.updateTime(time);
+    this.updateHealthBars(time);
 
   }
   drawTime(context) {

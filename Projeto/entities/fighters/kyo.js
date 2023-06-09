@@ -3,12 +3,9 @@ import { Fighter } from './fighter.js';
 
 
 export class Kyo extends Fighter {
-    constructor(playerId) {
-        super(playerId);
+        image = document.querySelector('img[alt="kyo"]');
 
-        this.image = document.querySelector('img[alt="kyo"]');
-
-        this.frames = new Map([
+        frames = new Map([
             // Idle Stance check
 
             ['idle-1', [[[10, 12, 59, 103], [28, 0]], PushBox.IDLE, [[-20, 18, 40, 55], [-10, -3, 20, 21], [-20, 70, 40, 21]]]],
@@ -174,8 +171,22 @@ export class Kyo extends Fighter {
             ['special-55', [[[1520, 4990, 66, 139], [31, 34]], PushBox.IDLE, HurtBox.IDLE]],
             ['special-56', [[[1618, 5026, 59, 103], [20, -2]], PushBox.IDLE, HurtBox.IDLE]],
 
+                        // hit face
+                        ['hit-face-1'[[[6, 770, 65, 103,], [0, 0]], PushBox.IDLE]],
+                        ['hit-face-2'[[[83, 771, 91, 102,], [0, 0]], PushBox.IDLE]],
+                        ['hit-face-3'[[[186, 770, 65, 103,], [0, 0]], PushBox.IDLE]],
+
+                        // hit Stomach
+                        ['hit-face-1'[[[6, 770, 65, 103,], [0, 0]], PushBox.IDLE]],
+                        ['hit-face-2'[[[83, 771, 91, 102,], [0, 0]], PushBox.IDLE]],
+                        ['hit-face-3'[[[186, 770, 65, 103,], [0, 0]], PushBox.IDLE]],
+
+                        // Stunned
+                        ['hit-face-1'[[[6, 770, 65, 103,], [0, 0]], PushBox.IDLE]],
+                        ['hit-face-2'[[[83, 771, 91, 102,], [0, 0]], PushBox.IDLE]],
+                        ['hit-face-3'[[[186, 770, 65, 103,], [0, 0]], PushBox.IDLE]],
         ]);
-        this.animations = {
+        animations = {
             //check IDLE - Yes - 10 Frames
             [FighterState.IDLE]: [['idle-1', 100], ['idle-2', 100], ['idle-3', 100], ['idle-4', 100],
             ['idle-5', 100], ['idle-6', 100], ['idle-7', 100], ['idle-8', 100], ['idle-9', 100], ['idle-10', 100],
@@ -191,6 +202,7 @@ export class Kyo extends Fighter {
             [FighterState.JUMP_START]: [
                 ['jump-land', 80], ['jump-land', FrameDelay.TRANSITION],
             ],
+
 
 
 
@@ -228,11 +240,24 @@ export class Kyo extends Fighter {
             [FighterState.LIGHT_KICK]: [['light-kick-1', 65], ['light-kick-2', 65], ['light-kick-3', 65], ['light-kick-4', 75], ['light-kick-5', 100], ['light-kick-6', 100], ['light-kick-7', 100], ['light-kick-8', FrameDelay.TRANSITION]],
 
             [FighterState.MEDIUM_KICK]: [['special-1', 75], ['special-2', 75], ['special-3', 75], ['special-4', 75], ['special-5', 75], ['special-6', 75,], ['special-7', 75], ['special-8', 75], ['special-9', 75], ['special-10', 75], ['special-10', 75], ['special-11', 75], ['special-12', 75], ['special-13', 75], ['special-14', 75], ['special-15', 75], ['special-16', 75], ['special-17', 75], ['special-18', 75], ['special-19', 75], ['special-20', 75], ['special-21', 75], ['special-22', 75], ['special-23', 75], ['special-24', 75], ['special-25', 75], ['special-26', 75], ['special-27', 75], ['special-28', 75], ['special-29', 75], ['special-30', 75], ['special-31', 75], ['special-32', 75], ['special-33', 75], ['special-34', 75], ['special-35', 75], ['special-36', 75], ['special-37', 75], ['special-38', 75], ['special-39', 75], ['special-40', 75], ['special-41', 75], ['special-42', 75], ['special-43', 75], ['special-44', 75], ['special-45', 75], ['special-46', 75], ['special-47', 75], ['special-48', 75], ['special-49', 75], ['special-50', 75], ['special-51', 75], ['special-52', 75], ['special-53', 75], ['special-54', 75], ['special-55', 75], ['special-56', FrameDelay.TRANSITION]],
+            [FighterState.HURT_BODY_LIGHT]: [['light-punch-1', 33], ['light-punch-2', 66], ['light-punch-3', 66, FrameDelay.TRANSITION]
+            ],
 
+            [FighterState.HURT_BODY_MEDIUM]: [['light-punch-1', 33], ['light-punch-2', 66], ['light-punch-3', 66, FrameDelay.TRANSITION]
+            ],
+            [FighterState.HURT_BODY_HEAVY]: [['light-punch-1', 33], ['light-punch-2', 66], ['light-punch-3', 66, FrameDelay.TRANSITION]
+            ],
+            [FighterState.HURT_HEAD_LIGHT]: [['light-punch-1', 33], ['light-punch-2', 66], ['light-punch-3', 66, FrameDelay.TRANSITION]
+            ],
+
+            [FighterState.HURT_HEAD_MEDIUM]: [['light-punch-1', 33], ['light-punch-2', 66], ['light-punch-3', 66, FrameDelay.TRANSITION]
+            ],
+            [FighterState.HURT_HEAD_HEAVY]: [['light-punch-1', 33], ['light-punch-2', 66], ['light-punch-3', 66, FrameDelay.TRANSITION]
+            ],
         };
 
 
-        this.initialVelocity = {
+        initialVelocity = {
             x: {
                 [FighterState.WALK_FORWARD]: 2 * 60,
                 [FighterState.WALK_BACKWARD]: -(2 * 60),
@@ -243,8 +268,8 @@ export class Kyo extends Fighter {
             jump: -420,
         };
 
-        this.gravity = 1000;
+        gravity = 1000;
     }
-}
+
 
 
