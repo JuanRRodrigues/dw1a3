@@ -30,7 +30,7 @@ hitPoints: HEALTH_MAX_HIT_POINTS,
     this.frames = new Map([
       ['health-bar', [16, 18, 145, 11]],
 
-      ['Versus', [161, 16, 32, 14]],
+      ['Versus', [161, 13, 32, 19]],
 
       [`${TIME_FRAME_KEYS[0]}-0`, [16, 32, 14, 16]],
       [`${TIME_FRAME_KEYS[0]}-1`, [32, 32, 14, 16]],
@@ -69,7 +69,7 @@ hitPoints: HEALTH_MAX_HIT_POINTS,
 
   drawHealthBars(context) {
     this.drawFrame(context, 'health-bar', 61, 20);
-    this.drawFrame(context, 'Versus', 206, 18);
+    this.drawFrame(context, 'Versus', 206, 16);
     this.drawFrame(context, 'health-bar', 383, 20, -1);
 
 
@@ -126,8 +126,8 @@ HEALTH_MAX_HIT_POINTS - Math.floor(this.healthBars[1].hitPoints), 9,
     const timesString = String(Math.max(this.time, 0)).padStart(2, '00');
     const flashFrame = TIME_FRAME_KEYS[Number(this.useFlashFrames)]
 
-    this.drawFrame(context, `${flashFrame}-${timesString.charAt(0)}`, 208, 33);
-    this.drawFrame(context, `${flashFrame}-${timesString.charAt(1)}`, 224, 33);
+    this.drawFrame(context, `${flashFrame}-${timesString.charAt(0)}`, 210, 20);
+    this.drawFrame(context, `${flashFrame}-${timesString.charAt(1)}`, 223, 20);
   }
   draw(context) {
 
