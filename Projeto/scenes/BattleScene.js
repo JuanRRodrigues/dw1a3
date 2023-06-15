@@ -4,9 +4,10 @@ import { StatusBar } from "../entities/fighters/overlays/StatusBar.js";
 import { FpsCounter } from "../entities/FpsCounter.js";
 import { Stage } from "../entities/stage.js";
 import { gameState } from "../state/gameState.js";
-import { FighterAttackBaseData, FighterAttackStrenght, FighterId } from "../src/constants/fighter.js";
+import { FIGHTER_HURT_DELAY, FighterAttackBaseData, FighterAttackStrenght, FighterId } from "../src/constants/fighter.js";
 import { STAGE_MID_POINT, STAGE_PADDING } from "../src/constants/stage.js";
 import { LightHitSplash, MediumHitSplash, HeavyHitSplash } from "../entities/fighters/shared/index.js";
+import { FRAME_TIME } from "../src/constants/game.js";
 
 
 
@@ -14,7 +15,8 @@ export class BattleScene {
     fighters = [];
     camera = undefined;
     entities = [];
-
+    hurtTimer = undefined;
+    fighterDrawOrder = [0, 1];
 
     constructor() {
         this.stage = new Stage();
@@ -61,13 +63,19 @@ export class BattleScene {
     }
     updateFighters(time, context) {
         for (const fighter of this.fighters) {
-            fighter.update(time, context, this.camera);
+            if (time.previous < this.hurtTimer) {
+                fighter.updateHurtShake(time, this.hurtTimer);
+            }else{
+                fighter.update(time, context, this.camera);
+            }
         }
     }
-    handleAttackHit(playerId, opponentId, position, strength){
+    handleAttackHit(time, playerId, opponentId, position, strength){
        gameState.fighters[playerId].score += FighterAttackBaseData[strength].score;
         gameState.fighters[opponentId].hitPoints -= FighterAttackBaseData[strength].damage;
 
+        this.hurtTimer = time.previous + (FIGHTER_HURT_DELAY * FRAME_TIME);
+        this.fighterDrawOrder = [opponentId, playerId];
         this.addEntity(this.getHitSplashClass(strength), position.x, position.y, playerId);
     }
 
@@ -110,8 +118,8 @@ export class BattleScene {
 
     }
     drawFighters(context) {
-        for (const fighter of this.fighters) {
-            fighter.draw(context, this.camera);
+        for (const fighterId of this.fighterDrawOrder) {
+            this.fighters[fighterId].draw(context, this.camera);
         }
     }
     drawEntities(context) {

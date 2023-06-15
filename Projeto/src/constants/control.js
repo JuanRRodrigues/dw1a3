@@ -21,12 +21,12 @@ export const controls = [
             [Control.RIGHT]: 'ArrowRight',
             [Control.UP]: 'ArrowUp',
             [Control.DOWN]: 'ArrowDown',
-            [Control.LIGHT_PUNCH]: 'Key1',
-            [Control.MEDIUM_PUNCH]: 'Key1',
-            [Control.HEAVY_PUNCH]: 'Key3',
-            [Control.LIGHT_KICK]: 'Key4',
-            [Control.MEDIUM_KICK]: 'Key5',
-            [Control.HEAVY_KICK]: 'Key6',
+            [Control.LIGHT_PUNCH]: 'Numpad1',
+            [Control.MEDIUM_PUNCH]: 'Numpad2',
+            [Control.HEAVY_PUNCH]: 'Numpad3',
+            [Control.LIGHT_KICK]: 'Numpad4',
+            [Control.MEDIUM_KICK]: 'Numpad5',
+            [Control.HEAVY_KICK]: 'Numpad6',
 
 
         },

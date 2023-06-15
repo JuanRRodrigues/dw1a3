@@ -1,4 +1,4 @@
-import { FighterState, PushBox, FrameDelay, FIGHTER_HURT_DELAY } from '../../src/constants/fighter.js';
+import { FighterState, PushBox, FrameDelay, FIGHTER_HURT_DELAY, HurtBox } from '../../src/constants/fighter.js';
 import { Fighter } from './fighter.js';
 
 
@@ -108,20 +108,36 @@ export class Leona extends Fighter {
         ['crouch-turn-3', [[[837, 44, 59, 71], [0, 0]], PushBox.CROUCH_TURN]],
 
         // Light Punch
-        ['light-punch-1'[[[6, 770, 65, 103,], [0, 0]], PushBox.IDLE]],
-        ['light-punch-2'[[[83, 771, 91, 102,], [0, 0]], PushBox.IDLE]],
-        ['light-punch-3'[[[186, 770, 65, 103,], [0, 0]], PushBox.IDLE]],
+        ['light-punch-1', [[[14, 1052, 78, 107,], [37, 2]], PushBox.IDLE, HurtBox.IDLE]],
+        ['light-punch-2', [[[110, 1050, 102, 109,], [37, 3]], PushBox.IDLE, HurtBox.IDLE, [15, 15, 50, 18]]],
+        ['light-punch-3', [[[233, 1053, 79, 106,], [37, 4]], PushBox.IDLE, HurtBox.IDLE]],
 
 
+                // Medium Punch
+                ['medium-punch-1', [[[15, 1470, 77, 111,], [25, 8]], PushBox.IDLE, HurtBox.IDLE]],
+                ['medium-punch-2', [[[115, 1473, 101, 108,], [25, 8]], PushBox.IDLE, HurtBox.IDLE, [20, 2, 55, 18]]],
+                ['medium-punch-3', [[[230, 1470, 78, 111,], [25, 8]], PushBox.IDLE, HurtBox.IDLE]],
+
+                                // Heavy Punch
+                                ['heavy-punch-1', [[[4, 1192, 78, 98,], [23, -5]], PushBox.IDLE, HurtBox.IDLE]],
+                                ['heavy-punch-2', [[[99, 1190, 73, 100,], [25, -5]], PushBox.IDLE, HurtBox.IDLE]],
+                                ['heavy-punch-3', [[[191, 1193, 90, 97,], [25, -5]], PushBox.IDLE, HurtBox.IDLE]],
+                                ['heavy-punch-4', [[[302, 1185, 79, 105,], [25, 1]], PushBox.IDLE, HurtBox.IDLE]],
+                                ['heavy-punch-5', [[[401, 1187, 71, 103,], [25, 1]], PushBox.IDLE, HurtBox.IDLE, [20, 16, 28, 21]]],
+                                ['heavy-punch-6', [[[494, 1185, 50, 105,], [10, 1]], PushBox.IDLE, HurtBox.IDLE]],
+                                ['heavy-punch-7', [[[563, 1184, 41, 106,], [10, 1]], PushBox.IDLE, HurtBox.IDLE]],
+                                ['heavy-punch-8', [[[625, 1185, 50, 105,], [10, 1]], PushBox.IDLE, HurtBox.IDLE]],
+                                ['heavy-punch-9', [[[695, 1170, 70, 120,], [10, 1]], PushBox.IDLE, HurtBox.IDLE]],
         // hit face
-        ['hit-head-1'[[[328, 7803, 57, 108,], [0, 0]], PushBox.IDLE]],
-        ['hit-head-2'[[[414, 7803, 57, 109,], [0, 0]], PushBox.IDLE]],
-        ['hit-head-3'[[[500, 7806, 57, 108,], [0, 0]], PushBox.IDLE]],
+        ['hit-head-1, '[[[328, 7803, 57, 108,], [0, 0]], PushBox.IDLE]],
+        ['hit-head-2, '[[[414, 7803, 57, 109,], [0, 0]], PushBox.IDLE]],
+        ['hit-head-3, '[[[500, 7806, 57, 108,], [0, 0]], PushBox.IDLE]],
+
 
         // hit Stomach
-        ['hit-body-1'[[[17, 7802, 59, 108,], [0, 0]], [[-20, 18, 40, 55], [-10, -3, 20, 21], [-20, 70, 40, 21]]]],
-        ['hit-body-2'[[[106, 7803, 54, 107,], [0, 0]], [[-20, 18, 40, 55], [-10, -3, 20, 21], [-20, 70, 40, 21]]]],
-        ['hit-body-3'[[[192, 7805, 59, 108,], [0, 0]], [[-20, 18, 40, 55], [-10, -3, 20, 21], [-20, 70, 40, 21]]]],
+        ['hit-body-1', [[[17, 7802, 59, 108], [30, 6]], PushBox.IDLE, [[-20, 18, 40, 55], [-10, -3, 20, 21], [-20, 70, 40, 21]]]],
+        ['hit-body-2', [[[106, 7803, 54, 107,], [0, 0]], PushBox.IDLE, [[-20, 18, 40, 55], [-10, -3, 20, 21], [-20, 70, 40, 21]]]],
+        ['hit-body-3', [[[192, 7805, 59, 108,], [0, 0]], PushBox.IDLE, [[-20, 18, 40, 55], [-10, -3, 20, 21], [-20, 70, 40, 21]]]],
 
         // Stunned
         ['hit-feet-1'[[[14, 8209, 104, 103,], [0, 0]], PushBox.IDLE]],
@@ -167,23 +183,25 @@ export class Leona extends Fighter {
         [FighterState.CROUCH_UP]: [['crouch-3', 30], ['crouch-2', 30], ['crouch-1', 30], ['crouch-1', -2],
         ],
 
-        [FighterState.IDLE_TURN]: [['idle-turn-3', 30], ['idle-turn-2', 30], ['idle-turn-1', 30], ['idle-turn-1', FrameDelay.TRANSITION],
+        [FighterState.IDLE_TURN]: [['idle-turn-3', 30], ['idle-turn-2', 30], ['idle-turn-1', 30], ['idle-turn-1', FrameDelay.TRANSITION]
         ],
 
-        [FighterState.CROUCH_TURN]: [['crouch-turn-3', 33], ['crouch-turn-2', 33], ['crouch-turn-1', 33], ['crouch-turn-1', FrameDelay.TRANSITION],
+        [FighterState.CROUCH_TURN]: [['crouch-turn-3', 33], ['crouch-turn-2', 33], ['crouch-turn-1', 33], ['crouch-turn-1', FrameDelay.TRANSITION]
         ],
-        [FighterState.LIGHT_PUNCH]: [['light-punch-1', 33], ['light-punch-2', 66], ['light-punch-3', 66, FrameDelay.TRANSITION],
-        ],
+        [FighterState.LIGHT_PUNCH]: [['light-punch-1', 80], ['light-punch-2', 110], ['light-punch-3', FrameDelay.TRANSITION]],
+        [FighterState.MEDIUM_PUNCH]: [['medium-punch-1', 80], ['medium-punch-2', 110], ['medium-punch-3', FrameDelay.TRANSITION]],
 
-        [FighterState.HURT_BODY_LIGHT]: [['hit-body-1', FIGHTER_HURT_DELAY], ['hit-body-2', 66], ['hit-body-3', FrameDelay.TRANSITION],
-        ],
+        [FighterState.HEAVY_PUNCH]: [['heavy-punch-1', 100], ['heavy-punch-2', 100], ['heavy-punch-3', 100], ['heavy-punch-4', 100], ['heavy-punch-5', 100], ['heavy-punch-6', 100], ['heavy-punch-7', 100], ['heavy-punch-8', FrameDelay.TRANSITION]],
 
-        [FighterState.HURT_BODY_MEDIUM]: [['hit-body-1', FIGHTER_HURT_DELAY], ['hit-body-2', 66], ['hit-body-3', FrameDelay.TRANSITION],
+        [FighterState.HURT_BODY_LIGHT]: [['hit-body-1', FIGHTER_HURT_DELAY], ['hit-body-2', 66], ['hit-body-3', FrameDelay.TRANSITION]
+    ],
+
+        [FighterState.HURT_BODY_MEDIUM]: [['hit-body-1', FIGHTER_HURT_DELAY], ['hit-body-2', 66], ['hit-body-3', FrameDelay.TRANSITION]
         ],
-        [FighterState.HURT_BODY_HEAVY]: [['hit-body-1', FIGHTER_HURT_DELAY], ['hit-body-2', 66], ['hit-body-3', FrameDelay.TRANSITION],
+        [FighterState.HURT_BODY_HEAVY]: [['hit-body-1', FIGHTER_HURT_DELAY], ['hit-body-2', 66], ['hit-body-3', FrameDelay.TRANSITION]
 
         ],
-        [FighterState.HURT_HEAD_LIGHT]: [['hit-body-1', FIGHTER_HURT_DELAY], ['hit-body-2', 66], ['hit-body-3', FrameDelay.TRANSITION],
+        [FighterState.HURT_HEAD_LIGHT]: [['hit-body-1', FIGHTER_HURT_DELAY], ['hit-body-2', 66], ['hit-body-3', FrameDelay.TRANSITION]
         ],
 
         [FighterState.HURT_HEAD_MEDIUM]: [

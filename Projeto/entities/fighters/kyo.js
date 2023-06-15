@@ -1,5 +1,6 @@
-import { FighterState, PushBox, FrameDelay, HurtBox } from '../../src/constants/fighter.js';
+import { FighterState, PushBox, FrameDelay, FIGHTER_HURT_DELAY, HurtBox } from '../../src/constants/fighter.js';
 import { Fighter } from './fighter.js';
+
 
 
 export class Kyo extends Fighter {
@@ -177,9 +178,10 @@ export class Kyo extends Fighter {
                         ['hit-face-3'[[[186, 770, 65, 103,], [0, 0]], PushBox.IDLE]],
 
                         // hit Stomach
-                        ['hit-face-1'[[[6, 770, 65, 103,], [0, 0]], PushBox.IDLE]],
-                        ['hit-face-2'[[[83, 771, 91, 102,], [0, 0]], PushBox.IDLE]],
-                        ['hit-face-3'[[[186, 770, 65, 103,], [0, 0]], PushBox.IDLE]],
+  // hit Stomach
+  ['hit-body-1', [[[945, 9217, 66, 105], [30, 6]], PushBox.IDLE, [[-20, 18, 40, 55], [-10, -3, 20, 21], [-20, 70, 40, 21]]]],
+  ['hit-body-2', [[[945, 9217, 66, 105], [0, 0]], PushBox.IDLE, [[-20, 18, 40, 55], [-10, -3, 20, 21], [-20, 70, 40, 21]]]],
+  ['hit-body-3', [[[945, 9217, 66, 105], [0, 0]], PushBox.IDLE, [[-20, 18, 40, 55], [-10, -3, 20, 21], [-20, 70, 40, 21]]]],
 
                         // Stunned
                         ['hit-face-1'[[[6, 770, 65, 103,], [0, 0]], PushBox.IDLE]],
@@ -253,6 +255,23 @@ export class Kyo extends Fighter {
             [FighterState.HURT_HEAD_MEDIUM]: [['light-punch-1', 33], ['light-punch-2', 66], ['light-punch-3', 66, FrameDelay.TRANSITION]
             ],
             [FighterState.HURT_HEAD_HEAVY]: [['light-punch-1', 33], ['light-punch-2', 66], ['light-punch-3', 66, FrameDelay.TRANSITION]
+            ],
+            [FighterState.HURT_BODY_LIGHT]: [['hit-body-1', FIGHTER_HURT_DELAY], ['hit-body-2', 66], ['hit-body-3', FrameDelay.TRANSITION]
+        ],
+
+            [FighterState.HURT_BODY_MEDIUM]: [['hit-body-1', FIGHTER_HURT_DELAY], ['hit-body-2', 66], ['hit-body-3', FrameDelay.TRANSITION]
+            ],
+            [FighterState.HURT_BODY_HEAVY]: [['hit-body-1', FIGHTER_HURT_DELAY], ['hit-body-2', 66], ['hit-body-3', FrameDelay.TRANSITION]
+
+            ],
+            [FighterState.HURT_HEAD_LIGHT]: [['hit-body-1', FIGHTER_HURT_DELAY], ['hit-body-2', 66], ['hit-body-3', FrameDelay.TRANSITION]
+            ],
+
+            [FighterState.HURT_HEAD_MEDIUM]: [
+                ['hit-body-1', FIGHTER_HURT_DELAY], ['hit-body-2', 66], ['hit-body-3', FrameDelay.TRANSITION],
+            ],
+            [FighterState.HURT_HEAD_HEAVY]: [
+                ['hit-body-1', FIGHTER_HURT_DELAY], ['hit-body-2', 66], ['hit-body-3', FrameDelay.TRANSITION],
             ],
         };
 
